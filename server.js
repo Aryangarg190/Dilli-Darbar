@@ -1,49 +1,25 @@
-const dotenv = require("dotenv");
-const express = require("express");
+const dotenv = require("dotenv")
+const express = require("express")
+const mongoose = require('mongoose')
+const newsAuth = require('./routes/news')
 dotenv.config()
 
 const app = express();
 
-app.set('view engine', 'ejs');
-app.use(express.urlencoded({extended: true}));
-app.use(express.static(__dirname + "public"));
+app.set('view engine', 'ejs')
+app.set('views', __dirname + '/views')
+app.use(express.urlencoded({extended: true}))
+app.use(express.static(__dirname + "public"))
 
-//mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.ckdd9.mongodb.net/${process.env.DB_NAME}`, {useUnifiedTopology: true, useNewUrlParser: true});
+mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.lq10c1l.mongodb.net/${process.env.DB_NAME}`, {
+    useUnifiedTopology: true, 
+    useNewUrlParser: true
+})
+const db = mongoose.connection
+db.on('error', error => console.error(error))
+db.once('open', error => console.log('Connected to Database'))
 
-app.get('/', (req, res) => [
-    res.render('index')
-])
-
-app.get('/about', (req, res) => [
-    res.render('about')
-])
-
-app.get('/contact', (req, res) => [
-    res.render('contact')
-])
-
-app.get('/Feedback', (req, res) => [
-    res.render('feedback')
-])
-app.get('/finance', (req, res) => [
-    res.render('finance')
-])
-
-app.get('/entertainment', (req, res) => [
-    res.render('entertainment')
-])
-
-app.get('/dailyaffairs', (req, res) => [
-    res.render('dailyaffairs')
-])
-
-app.get('/international', (req, res) => [
-    res.render('international')
-])
-
-app.get('/sports', (req, res) => [
-    res.render('sports')
-])
+app.use('/', newsAuth)
 
 app.listen(process.env.PORT || 3000, function(){
     console.log("Server has started successfully");
