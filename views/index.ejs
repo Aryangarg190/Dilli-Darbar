@@ -6,72 +6,37 @@
         <h1 style="text-align:center;">Breaking News</h1>
         <br>
     </div>
-    <div class="project-page-article">
-        <div class="col-lg-6 mx-auto">
-            <div class="card project-card" >
-                <div class="card-body">
-                    <div class="project-img">
-                        <a href="https://github.com/Ayush0202/Codeshare" target="_blank">
-                            <img src="https://executive.mit.edu/dw/image/v2/BFHZ_PRD/on/demandware.static/-/Sites-master-catalog-msee/default/dw5b8dd1c8/images/FIN.jpg?sw=400&sh=300" alt="dads" srcset="" class="project-image">
-                        </a>
-                    </div>
-                    <div class="card-link">
-                        <a href="https://github.com/Ayush0202/Codeshare" title="Github" target="_blank"><i class="link fa-brands fa-github"></i></a>
-                        <a href="https://limitless-mountain-02271.herokuapp.com/" title="Live" target="_blank"><i class="link fa-solid fa-up-right-from-square"></i></a>
-                    </div>
-                    <h2 class="card-title">News Title</h2>
-                    <h4 >News Description</h4>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias omnis amet tempore, autem, laudantium unde ipsa adipisci maiores repellendus laborum quo ab accusamus sunt architecto voluptatem necessitatibus laboriosam deleniti aliquid?
-                        <br>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ipsam ratione dicta consequuntur aspernatur cupiditate omnis illo atque iusto enim aliquid ducimus! Aspernatur animi quidem dolores eum sequi libero earum?
-                        <br>
-                    </p>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-lg-6 mx-auto">
-            <div class="card project-card" >
-                <div class="card-body">
-                    <div class="project-img">
-                        <a href="https://github.com/Ayush0202/RealTime-Chat-Application" target="_blank">
-                            <img src="https://t4.ftcdn.net/jpg/04/32/31/41/240_F_432314164_aGSuiKikhfzcURx2tGGcC6ikw1Rm15JR.jpg" alt="dads" srcset="" class="project-image">
-                        </a>
-                    </div>
-                    <div class="card-link">
-                        <a href="https://github.com/Ayush0202/RealTime-Chat-Application" title="Github" target="_blank"><i class="link fa-brands fa-github"></i></a>
-                    </div>
-                    <h2 class="card-title">News Title</h2>
-                    <h4 >new Description</h4>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum sit nam ab atque. Accusantium modi consequatur cumque iure! Nesciunt ipsa possimus fugiat qui adipisci, quia at quis unde fugit ducimus?
-                    </p>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-lg-6 mx-auto">
-            <div class="card project-card" >
-                <div class="card-body">
-                    <div class="project-img">
-                        <a href="https://github.com/Ayush0202/KeeperApp-Google-Keep-Clone" target="_blank">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoGT2ZPRYC3nOqds19WPocJgCEpYVTeU3P8A&usqp=CAU" alt="dads" srcset="" class="project-image">
-                        </a>
+    <% news.forEach(function(news){ %>
+        <div class="project-page-article">
+            <div class="col-lg-6 mx-auto">
+                <div class="card project-card" >
+                    <div class="card-body">
+                        <div class="project-img">
+                            <a href="https://github.com/Ayush0202/Codeshare" target="_blank">
+                                <img src="https://executive.mit.edu/dw/image/v2/BFHZ_PRD/on/demandware.static/-/Sites-master-catalog-msee/default/dw5b8dd1c8/images/FIN.jpg?sw=400&sh=300" alt="dads" srcset="" class="project-image">
+                            </a>
+                        </div>
+                        <div class="card-link">
+                            <a href="https://github.com/Ayush0202/Codeshare" title="Github" target="_blank"><i class="link fa-brands fa-github"></i></a>
+                            <a href="https://limitless-mountain-02271.herokuapp.com/" title="Live" target="_blank"><i class="link fa-solid fa-up-right-from-square"></i></a>
+                        </div>
+                        <p><%= news.createdAt.toLocaleDateString() %> </p>
+                        <h2 class="card-title"><%= news.title %></h2>
+                        <h4 ><%= news.description %></h4>
+                        <p class="card-text">
+                            <%- news.sanitizedHtml %>
+                        </p>
+                        <a href="/<%= news.slug %> " class="btn btn-sm btn-primary">Read More</a>
                     </div>
-                    <div class="card-link">
-                        <a href="https://github.com/Ayush0202/KeeperApp-Google-Keep-Clone" title="Github" target="_blank"><i class="link fa-brands fa-github"></i></a>
-                    </div>
-                    <h2 class="card-title">News Title</h2>
-                    <h4 >news Description</h4>
-                    <p class="card-text">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis, sequi quaerat quidem tempore placeat, assumenda quod aliquid asperiores numquam debitis temporibus optio ipsa, vel sit in sunt porro aperiam atque.
-                        <br>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque quasi ipsam, architecto nisi quos dolor nostrum quisquam, quo dolore aspernatur nihil sit tenetur, aliquam sapiente nam laudantium commodi hic. Perferendis.                    </p>
                 </div>
             </div>
         </div>
-    </div>
+    <% }) %>
+    
+
+        
 </section>
 
 

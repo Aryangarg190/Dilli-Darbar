@@ -3,8 +3,7 @@ const News = require('./news')
 
 const newstypeSchema = new mongoose.Schema({
     newstype: {
-        type: String,
-        required: true
+        type: String
     }
 })
 

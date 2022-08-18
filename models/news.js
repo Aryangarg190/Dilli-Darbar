@@ -1,7 +1,11 @@
 const mongoose = require('mongoose')
+const {marked} = require('marked')
+const slugify = require('slugify')
+const createDomPurify = require('dompurify')
+const { JSDOM } = require('jsdom')
+const dompurify = createDomPurify(new JSDOM().window)
 
 const newsSchema = new mongoose.Schema({
-    
     title: {
         type: String,
         required: true
@@ -9,8 +13,8 @@ const newsSchema = new mongoose.Schema({
     description: {
         type: String
     },
-    publishDate: {
-        type: Date,
+    content: {
+        type: String,
         required: true
     },
     createdAt: {
@@ -18,15 +22,30 @@ const newsSchema = new mongoose.Schema({
         required: true,
         default: Date.now
     },
-    coverImageName: {
+    newstype: {
         type: String,
         required: true
     },
-    newstype: {
-        type: mongoose.Schema.Types.ObjectId,
+    slug: {
+        type: String,
         required: true,
-        ref: 'Author'
+        unique: true
+    },
+    sanitizedHtml: {
+        type: String,
+        required: true
     }
+}, {timestamps: true})
+
+newsSchema.pre('validate', function(next) {
+    if (this.title) {
+      this.slug = slugify(this.title, { lower: true, strict: true })
+    }
+  
+    if (this.content) {
+      this.sanitizedHtml = dompurify.sanitize(marked(this.content))
+    }
+    next()
 })
 
 module.exports = mongoose.model('News', newsSchema)

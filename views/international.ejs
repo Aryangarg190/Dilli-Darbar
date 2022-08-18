@@ -1,7 +1,38 @@
 <%- include('partials/header') %>
 <%- include('partials/navbar') %>
 
-International
+<section class="project-page" id="project-page">
+    <div class="project-page-heading">
+        <h1 style="text-align:center;">International News</h1>
+        <br>
+    </div>
+
+
+    <% news.forEach(function(news){ %>
+        <div class="project-page-article">
+            <div class="col-lg-6 mx-auto">
+                <div class="card project-card" >
+                    <div class="card-body">
+                        <div class="project-img">
+                            <a href="https://github.com/Ayush0202/Codeshare" target="_blank">
+                                <img src="https://executive.mit.edu/dw/image/v2/BFHZ_PRD/on/demandware.static/-/Sites-master-catalog-msee/default/dw5b8dd1c8/images/FIN.jpg?sw=400&sh=300" alt="dads" srcset="" class="project-image">
+                            </a>
+                        </div>
+                        <div class="card-link">
+                            <a href="https://github.com/Ayush0202/Codeshare" title="Github" target="_blank"><i class="link fa-brands fa-github"></i></a>
+                            <a href="https://limitless-mountain-02271.herokuapp.com/" title="Live" target="_blank"><i class="link fa-solid fa-up-right-from-square"></i></a>
+                        </div>
+                        <p><%= news.createdAt.toLocaleDateString() %> </p>
+                        <h2 class="card-title"><%= news.title %></h2>
+                        <h4 ><%= news.description %></h4>
+                        <p class="card-text">
+                            <%= news.content %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% }) %>
 
 <%- include('partials/footer') %>
 
